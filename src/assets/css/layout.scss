@@ -1,0 +1,6 @@
+@import './mixin.scss'
+@mixin list($color,$direction){
+  @include flex($direction);
+  background-color:$color;
+  
+}

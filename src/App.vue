@@ -1,13 +1,22 @@
 <template>
   <div id="app">
+    <kaka></kaka>
+
     <img src="./assets/logo.png">
-    <router-view/>
+    <hello></hello>
+
   </div>
 </template>
 
 <script>
+import kaka from './page/header';
+import hello from './components/HelloWorld.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    kaka,
+    hello
+  }
 }
 </script>
 
@@ -18,6 +27,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>

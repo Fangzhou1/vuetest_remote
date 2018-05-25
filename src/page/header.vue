@@ -39,34 +39,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/css/mixin';
+@import '~@/assets/css/mixin';
 .header-one {
+    @include flex(row,space-between);
     color: white;
     width:100%;
     height: 40px;
     background-color: rgb(21, 21, 23);
     .header-left {
-        @include flex(row,flex-start);
+        @include flex(row,flex-start,center);
         margin-left: 5%;
         li {
-            height: 20px;
-            line-height: 20px;
-            list-style: none;
-            padding: 0 10px;
-            margin:10px 0;
-            border-right: 1px solid white;
+            @include li(20px,1,10px)
         }
     }
     .header-right {
-        @include flex(row,flex-end);
+        @include flex(row,flex-start,center);
         margin-right: 5%;
         li {
-            height: 20px;
-            line-height: 20px;
-            list-style: none;
-            padding: 0 10px;
-            margin:10px 0;
-            border-right: 1px solid white;
+            @include li(20px,1,10px)
         }
     }
 

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import kaka from './page/header';
-import hello from './components/HelloWorld.vue';
+import kaka from '@/page/header';
+import hello from '@/components/HelloWorld.vue';
 export default {
   name: 'App',
   components: {

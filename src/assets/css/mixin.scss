@@ -1,4 +1,4 @@
-@mixin flex($direction,$content) {
+@mixin flex($direction,$justifycontent,$alignitems:stretch) {
   display:-webkit-box;
   display:-ms-flexbox;
   display:flex;
@@ -8,7 +8,19 @@
           flex-direction: $direction;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: $content;
-      -ms-flex-pack: $content;
-          justify-content: $content;
+  -webkit-box-pack: $justifycontent;
+      -ms-flex-pack: $justifycontent;
+          justify-content: $justifycontent;
+          -webkit-box-align:$alignitems;
+              -ms-flex-align:$alignitems;
+                  align-items:$alignitems;
+}
+
+
+@mixin li($height,$borderright:0,$padding:0){
+  height: $height;
+  line-height: $height;
+  list-style: none;
+  padding:0 $padding;
+  @if $borderright==1 {border-right: 1px solid white;&:last-of-type{border-right:0px;}}
 }

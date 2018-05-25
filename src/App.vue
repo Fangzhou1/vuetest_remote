@@ -1,21 +1,20 @@
 <template>
   <div id="app">
-    <kaka></kaka>
+    <hder></hder>
 
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <route-view></route-view>
+
 
   </div>
 </template>
 
 <script>
-import kaka from '@/page/header';
-import hello from '@/components/HelloWorld.vue';
+import hder from '@/page/header';
+import btn from '@/components/button';
 export default {
   name: 'App',
   components: {
-    kaka,
-    hello
+    hder
   }
 }
 </script>

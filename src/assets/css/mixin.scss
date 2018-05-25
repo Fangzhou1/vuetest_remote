@@ -22,5 +22,19 @@
   line-height: $height;
   list-style: none;
   padding:0 $padding;
-  @if $borderright==1 {border-right: 1px solid white;&:last-of-type{border-right:0px;}}
+  &:hover{color:white;}
+  cursor: pointer;
+  @if $borderright==1 {border-right: 1px solid rgb(145, 156, 148);&:last-of-type{border-right:0px;}}
+}
+
+@mixin btn($backgroundcolor,$color,$width,$height){
+  background-color: $backgroundcolor;
+  color:$color;
+  width: $width;
+  height: $height;
+  line-height: $height;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgb(145, 156, 148);
+  &:hover{background-color: red;color:white}
 }

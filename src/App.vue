@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <hder></hder>
-
+    <slide></slide>
     <route-view></route-view>
 
 
@@ -11,10 +11,12 @@
 <script>
 import hder from '@/page/header';
 import btn from '@/components/button';
+import slide from '@/components/slide';
 export default {
   name: 'App',
   components: {
-    hder
+    hder,
+    slide
   }
 }
 </script>

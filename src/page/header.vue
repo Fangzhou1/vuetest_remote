@@ -33,7 +33,7 @@
 <script>
 export default {
 
-  data() {
+  data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }

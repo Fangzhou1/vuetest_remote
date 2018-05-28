@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
@@ -23,6 +23,5 @@ export default {
   @include btn(white,black,45px,45px);
 
 }
-
 
 </style>

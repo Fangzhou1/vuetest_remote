@@ -2,9 +2,7 @@
 <div>
   <div class="swiper-container">
       <div class="swiper-wrapper">
-          <div class="swiper-slide">Slide 1</div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
+          <div v-for="(item,index) in images" class="swiper-slide" :key="index"><img :src="item.imageurl" /></div>
       </div>
       <!-- 如果需要分页器 -->
       <div class="swiper-pagination"></div>
@@ -14,37 +12,40 @@
       <div class="swiper-button-next"></div>
 
   </div>
-
-
 </div>
 </template>
 
 <script>
-import Swiper from 'swiper';
+import Swiper from 'swiper'
 export default {
-
-
-  data() {
+  data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-   mounted(){
-    var mySwiper = new Swiper ('.swiper-container', {
-    loop: true,
-    autoplay:true,
-
-    // 如果需要分页器
-    pagination: {
-      el: '.swiper-pagination',
-    },
-
-    // 如果需要前进后退按钮
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+  props: {
+    images: {
+      type: Array,
+      default () {
+        return []
+      }
     }
-  })
+  },
+  mounted () {
+    var mySwiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: true,
+      // 如果需要分页器
+      pagination: {
+        el: '.swiper-pagination'
+      },
+
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
+    })
   }
 }
 </script>

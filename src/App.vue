@@ -21,16 +21,21 @@ export default {
     slide
   },
   created () {
-    var that=this;
-    axios.get('/api/static/api/swider.js')
-      .then(function (response) {
-        that.images = response.data,
-        console.log(response.data)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    this.getSliderData();
+
+  },
+  methods: {
+    getSliderData () {
+      axios.get('/api/static/api/swider.js')
+        .then((response) => {
+          this.images = response.data;
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
   }
+
 }
 </script>
 

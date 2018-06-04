@@ -1,39 +1,45 @@
 <template>
 <div id="app">
   <hder></hder>
-  <slide :images="images"></slide>
+  <!-- <slide :images="images"></slide> -->
+  <listmenu :width="width" :height="height" :background_color="backgroundColor"></listmenu>
   <route-view></route-view>
 </div>
 </template>
 <script>
 import hder from '@/page/header'
-import slide from '@/components/slide'
+// import slide from '@/components/slide'
+import listmenu from '@/components/listmenu'
 import axios from 'axios'
 export default {
   name: 'App',
   data () {
     return {
-      images: []
+      images: [],
+      width:"200px",
+      height:"400px",
+      backgroundColor:"rgba(34, 40, 20,0.5)"
     }
   },
   components: {
     hder,
-    slide
+    listmenu
+
   },
   created () {
-    this.getSliderData();
+    // this.getSliderData();
 
   },
   methods: {
-    getSliderData () {
-      axios.get('/api/static/api/swider.js')
-        .then((response) => {
-          this.images = response.data;
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
+    // getSliderData () {
+    //   axios.get('/api/static/api/swider.js')
+    //     .then((response) => {
+    //       this.images = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error)
+    //     })
+    // }
   }
 
 }

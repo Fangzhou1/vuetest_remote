@@ -2,10 +2,10 @@
   display:-webkit-box;
   display:-ms-flexbox;
   display:flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: $direction;
-          flex-direction: $direction;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              flex-direction: $direction;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: $justifycontent;
@@ -17,11 +17,11 @@
 }
 
 
-@mixin li($height,$borderright:0,$padding:0){
+@mixin li($height,$borderright:0,$padding_sx:0,$padding_zy:0){
   height: $height;
   line-height: $height;
   list-style: none;
-  padding:0 $padding;
+  padding:$padding_sx $padding_zy;
   &:hover{color:white;}
   cursor: pointer;
   @if $borderright==1 {border-right: 1px solid rgb(145, 156, 148);&:last-of-type{border-right:0px;}}

@@ -101,3 +101,7 @@ hr {
 input, select {
     vertical-align:middle;
 }
+
+html {
+  font-size: 1.2vw;
+}

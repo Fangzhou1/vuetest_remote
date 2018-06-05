@@ -16,8 +16,8 @@ export default {
   data () {
     return {
       images: [],
-      width:"200px",
-      height:"400px",
+      width:"20vw",
+      height:"70vh",
       backgroundColor:"rgba(34, 40, 20,0.5)"
     }
   },

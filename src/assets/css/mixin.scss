@@ -1,4 +1,4 @@
-@mixin flex($direction,$justifycontent,$alignitems:stretch) {
+@mixin flex($direction,$justifycontent,$alignitems:center) {
   display:-webkit-box;
   display:-ms-flexbox;
   display:flex;

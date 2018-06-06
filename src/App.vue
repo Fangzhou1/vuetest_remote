@@ -2,7 +2,11 @@
 <div id="app">
   <hder></hder>
   <!-- <slide :images="images"></slide> -->
-  <listmenu :width="width" :height="height" :background_color="backgroundColor"></listmenu>
+  <listmenu :menu_datas="menudata" :width="width" :height="height" :background_color="backgroundColor">
+    <!-- <template slot-scope="props">
+      {{props.item.title}}
+    </template> -->
+  </listmenu>
   <route-view></route-view>
 </div>
 </template>
@@ -18,7 +22,8 @@ export default {
       images: [],
       width:"20vw",
       height:"70vh",
-      backgroundColor:"rgba(34, 40, 20,0.5)"
+      backgroundColor:"rgba(34, 40, 20,0.5)",
+      menudata:[]
     }
   },
   components: {
@@ -28,6 +33,7 @@ export default {
   },
   created () {
     // this.getSliderData();
+    this.getMenuData();
 
   },
   methods: {
@@ -39,7 +45,17 @@ export default {
     //     .catch(function (error) {
     //       console.log(error)
     //     })
-    // }
+    // },
+    getMenuData () {
+      axios.get('/api/static/api/menudatas.js')
+        .then((response) => {
+          this.menudata = response.data
+          // console.log(response.data)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
   }
 
 }
@@ -50,7 +66,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   /* margin-top: 60px; */
 }

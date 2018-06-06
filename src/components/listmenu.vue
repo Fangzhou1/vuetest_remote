@@ -1,43 +1,14 @@
 <template>
   <div class="wrap">
-    <ul class="listmenu" :style="listmenustyle">
-      <li>12313123</li>
-      <li>12313123</li>
-      <li>12313123</li>
-      <li>12313123</li>
-      <li>12313123</li>
-      <li>12313123</li>
+    <ul class="listmenu" :style="listmenustyle" @mouseout="show=false">
+      <li v-for="(item,index) in menu_datas"@mouseover="displayChildMenu(index)" :key="item.id" v-text="item.content"></li>
     </ul>
-    <ul v-show="show" class="childmenu" :style="childmenustyle">
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-      <li>1234567</li>
-    </ul>
+    <transition name="childmenu">
+      <ul v-show="show" class="childmenu" :style="childmenustyle" @mouseover="show=true" @mouseout="show=false">
+        <li v-for="citem in menu_datas[inx]['childcontent']">{{citem.title}}</li>
+      </ul>
+    </transition>
   </div>
-
-
-
 </template>
 
 <script>
@@ -52,10 +23,11 @@ export default {
       childmenustyle: {
 
         height: this.height,
-        left: this.width,
+        left: (parseInt(this.width)-1)+"vw"
 
       },
-      show: true
+      show:false,
+      inx:0
     }
   },
   props: {
@@ -77,11 +49,18 @@ export default {
         return ''
       }
     },
-    datas: {
+    menu_datas: {
       type: Array,
       default () {
         return []
       }
+    }
+  },
+  methods: {
+    displayChildMenu(index){
+      this.show = true;
+      this.inx=index;
+
     }
   }
 }
@@ -92,21 +71,29 @@ export default {
 .wrap {
   position: relative;
     .listmenu{
-      @include flex(column ,space-around);
+      @include flex(column ,center,stretch);
       width: 10vw;
+      overflow: auto;
       li{
         @include li(8vh,0,10px,10px);
-        flex:1;
-        color:rgb(132, 212, 31)
+        color:rgb(132, 212, 31);
+        text-align:center;
       }
     }
     .childmenu{
       @include flex(column ,flex-start);
       position: absolute;
       background-color: rgb(237, 249, 249);
-      border: 1px solid rgb(8, 8, 7);
-      width:auto;
+      width:50vw;
+      overflow: auto;
+      box-shadow: 5px 5px 5px #888888;
       top: 0;
+      &.childmenu-enter-active, .childmenu-leave-active {
+        transition: width .5s;
+      }
+      &.childmenu-enter, .childmenu-leave-to {
+        width: 0px;
+      }
         li{
           @include li(14vh,0,0px,10px);
           color:rgb(8, 8, 7)

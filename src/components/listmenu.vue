@@ -5,7 +5,7 @@
     </ul>
     <transition name="childmenu">
       <ul v-show="show" class="childmenu" :style="childmenustyle" @mouseover="show=true" @mouseout="show=false">
-        <li v-for="citem in menu_datas[inx]['childcontent']">{{citem.title}}</li>
+        <slot v-for="citem in menu_datas[inx]['childcontent']" :item=citem></slot>
       </ul>
     </transition>
   </div>
@@ -23,7 +23,7 @@ export default {
       childmenustyle: {
 
         height: this.height,
-        left: (parseInt(this.width)-1)+"vw"
+        left: (parseInt(this.width)-0.01)+"vw"
 
       },
       show:false,
@@ -88,10 +88,10 @@ export default {
       overflow: auto;
       box-shadow: 5px 5px 5px #888888;
       top: 0;
-      &.childmenu-enter-active, .childmenu-leave-active {
+      &.childmenu-enter-active, &.childmenu-leave-active {
         transition: width .5s;
       }
-      &.childmenu-enter, .childmenu-leave-to {
+      &.childmenu-enter, &.childmenu-leave-to {
         width: 0px;
       }
         li{

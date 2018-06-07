@@ -2,10 +2,10 @@
 <div id="app">
   <hder></hder>
   <!-- <slide :images="images"></slide> -->
-  <listmenu :menu_datas="menudata" :width="width" :height="height" :background_color="backgroundColor">
-    <!-- <template slot-scope="props">
-      {{props.item.title}}
-    </template> -->
+  <listmenu :menu_datas="listmenuProps.menudata" :width="listmenuProps.width" :height="listmenuProps.height" :background_color="listmenuProps.backgroundColor">
+    <template slot-scope="props">
+      <li class="listmenu">{{props.item.title}}</li>
+    </template>
   </listmenu>
   <route-view></route-view>
 </div>
@@ -20,10 +20,12 @@ export default {
   data () {
     return {
       images: [],
-      width:"20vw",
-      height:"70vh",
-      backgroundColor:"rgba(34, 40, 20,0.5)",
-      menudata:[]
+      listmenuProps:{
+        width:"20vw",
+        height:"70vh",
+        backgroundColor:"rgba(34, 40, 20,0.5)",
+        menudata:[]
+      }
     }
   },
   components: {
@@ -49,7 +51,7 @@ export default {
     getMenuData () {
       axios.get('/api/static/api/menudatas.js')
         .then((response) => {
-          this.menudata = response.data
+          this.listmenuProps.menudata = response.data
           // console.log(response.data)
         })
         .catch(function (error) {
@@ -61,12 +63,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '~@/assets/css/mixin';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  li.listmenu{
+    @include li(14vh,0,0px,10px);
+    color:rgb(8, 8, 7)
+  }
   /* margin-top: 60px; */
 }
 </style>

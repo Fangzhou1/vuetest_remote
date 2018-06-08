@@ -1,11 +1,11 @@
 <template>
   <div class="wrap">
     <ul class="listmenu" :style="listmenustyle" @mouseout="show=false">
-      <li v-for="(item,index) in menu_datas"@mouseover="displayChildMenu(index)" :key="item.id" v-text="item.content"></li>
+      <slot name="menu" v-for="(item,index) in menu_datas" @mouseover="displayChildMenu(index)" :item=item :index=index></slot>
     </ul>
     <transition name="childmenu">
       <ul v-show="show" class="childmenu" :style="childmenustyle" @mouseover="show=true" @mouseout="show=false">
-        <slot v-for="citem in menu_datas[inx]['childcontent']" :item=citem></slot>
+        <slot name="childmenu" v-for="citem in menu_datas[inx]['childcontent']" :item=citem></slot>
       </ul>
     </transition>
   </div>
@@ -74,11 +74,6 @@ export default {
       @include flex(column ,center,stretch);
       width: 10vw;
       overflow: auto;
-      li{
-        @include li(8vh,0,10px,10px);
-        color:rgb(132, 212, 31);
-        text-align:center;
-      }
     }
     .childmenu{
       @include flex(column ,flex-start);
@@ -94,10 +89,6 @@ export default {
       &.childmenu-enter, &.childmenu-leave-to {
         width: 0px;
       }
-        li{
-          @include li(14vh,0,0px,10px);
-          color:rgb(8, 8, 7)
-        }
     }
 }
 

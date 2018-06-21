@@ -1,11 +1,11 @@
 <template>
   <div class="wrap">
     <ul class="listmenu" :style="listmenustyle" @mouseout="show=false">
-      <slot name="menu" v-for="(item,index) in menu_datas" @mouseover="displayChildMenu(index)" :item=item :index=index></slot>
+      <slot name="menu" v-for="(item,index) in listmenuData" @mouseover="displayChildMenu(index)" :item="item" :index="index"></slot>
     </ul>
     <transition name="childmenu">
       <ul v-show="show" class="childmenu" :style="childmenustyle" @mouseover="show=true" @mouseout="show=false">
-        <slot name="childmenu" v-for="citem in menu_datas[inx]['childcontent']" :item=citem></slot>
+        <slot name="childmenu" v-for="citem in listmenuData[inx]['childcontent']" :item="citem"></slot>
       </ul>
     </transition>
   </div>
@@ -27,7 +27,9 @@ export default {
         width:this.childmenuStyle.width,
         height: this.childmenuStyle.height,
         left: this.childmenuStyle.left,
-        flexDirection: this.childmenuStyle.flexDirection
+        flexDirection: this.childmenuStyle.flexDirection,
+        top:this.childmenuStyle.top,
+        justifyContent:this.childmenuStyle.justify_content
       },
       show:false,
       inx:0
@@ -51,16 +53,20 @@ export default {
         type: Object,
         default: function () {
           return {
-            width: this.listmenuStyle.width,
+            width: "50vw",
             height: this.listmenuStyle.height,
-            left: (parseInt(this.width)-0.01)+"vw",
-            flexDirection: this.listmenuStyle.flex_direction
+            top:0,
+            left: (parseInt(this.listmenuStyle.width)-0.01)+"vw",
+            flexDirection: "column",
+            justify_content:"flex-start"
             }
           }
         },
-    menu_datas: {
-      type: Array,
-      default: []
+      listmenuData: {
+        type: Array,
+        default: function () {
+          return []
+        }
     }
   },
   methods: {
@@ -69,6 +75,9 @@ export default {
       this.inx=index;
 
     }
+  },
+  mounted () {
+    console.log(this.listmenuData)
   }
 }
 </script>
@@ -85,10 +94,10 @@ export default {
       @include flex(column ,flex-start);
       position: absolute;
       background-color: rgb(237, 249, 249);
-      width:50vw;
       overflow: auto;
       box-shadow: 5px 5px 5px #888888;
       top: 0;
+      z-index: 1;
       &.childmenu-enter-active, &.childmenu-leave-active {
         transition: width .5s;
       }

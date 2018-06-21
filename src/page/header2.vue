@@ -3,12 +3,11 @@
   <div class="brand">
     <img src="../assets/image/xmlogo.jpg" alt="">
   </div>
-  <header2meau id="header2meau" ref="header2meau" :data="" :listmenuData="this.listmenuData" :listmenuStyle="this.listmenuStyle">
+  <header2meau id="header2meau" ref="header2meau" :listmenuData="listmenuData" :listmenuStyle="listmenuStyle" :childmenuStyle="childmenuStyle">
     <li slot="menu" slot-scope="props" class="menu" :key="props.item.id" @mouseover="displayChildMenu(props.index)">{{props.item.content}}</li>
     <li slot="childmenu" slot-scope="props" class="listmenu" :key="props.item.id"><img :src="props.item.image" width="40px" height="40px"/>{{props.item.title}}</li>
-  </header2meau>
+</header2meau>
   <div class="searchbox">
-
   </div>
 </div>
 </template>
@@ -29,11 +28,13 @@ export default {
       },
       childmenuStyle: {
         width:"100vw",
-        height: this.listmenuStyle.height,
-        left: (parseInt(this.width)-0.01)+"vw",
-        flexDirection: this.flexDirection
+        height: "30vh",
+        left:0,
+        top:"13.7vh",
+        flexDirection: "row",
+        justify_content:"space-around"
       },
-      listmenuData:[],
+      listmenuData:[]
     }
   },
   components: {
@@ -42,13 +43,14 @@ export default {
   created () {
     // this.getSliderData();
     this.getHeader2meauData();
+
   },
   methods: {
     getHeader2meauData () {
       axios.get('/api/static/api/menuheaderdatas.js')
         .then((response) => {
           this.listmenuData = response.data
-          console.log(response.data)
+           // console.log(response.data)
         })
         .catch(function (error) {
           console.log(error)
@@ -65,16 +67,19 @@ export default {
 @import '~@/assets/css/mixin';
 .header2meauwrap{
   @include flex(row,space-between);
+  position:relative;
   .brand{
     background:url("../assets/image/xmlogo.jpg") no-repeat ;
     margin-left: 20px;
   }
   #header2meau{
+    position: static;
     li.menu{
       list-style:none;
-      cursor: pointer
-
-
+      cursor: pointer;
+    }
+    li.listmenu{
+      @include li(20vh,1);
     }
   }
 

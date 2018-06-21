@@ -3,7 +3,7 @@
   <hder></hder>
   <hder2></hder2>
   <!-- <slide :images="images"></slide> -->
-  <listmenu ref="listmenu" :menu_datas="listmenuProps.menudata" :width="listmenuProps.width" :height="listmenuProps.height" :background_color="listmenuProps.backgroundColor">
+  <listmenu ref="listmenu" :listmenuData="listmenuData" :listmenuStyle="listmenuStyle">
       <li slot="menu" slot-scope="props" class="menu" :key="props.item.id" @mouseover="displayChildMenu(props.index)">{{props.item.content}}</li>
       <li slot="childmenu" slot-scope="props" class="listmenu" :key="props.item.id"><img :src="props.item.image" width="40px" height="40px"/>{{props.item.title}}</li>
   </listmenu>
@@ -22,12 +22,12 @@ export default {
   data () {
     return {
       images: [],
-      listmenuProps:{
+      listmenuStyle: {
         width:"20vw",
         height:"70vh",
-        backgroundColor:"rgba(34, 40, 20,0.5)",
-        menudata:[]
-      }
+        background_color:"rgba(34, 40, 20,0.5)"
+      },
+      listmenuData:[],
     }
   },
   components: {
@@ -54,8 +54,8 @@ export default {
     getMenuData () {
       axios.get('/api/static/api/menudatas.js')
         .then((response) => {
-          this.listmenuProps.menudata = response.data
-          // console.log(response.data)
+          this.listmenuData = response.data
+           console.log(typeof response.data)
         })
         .catch(function (error) {
           console.log(error)

@@ -1,9 +1,9 @@
 <template>
 <div class="header2meauwrap">
   <div class="brand">
-
+    <img src="../assets/image/xmlogo.jpg" alt="">
   </div>
-  <header2meau ref="header2meau" :menu_datas="header2meauProps.menudata" :width="header2meauProps.width" :height="header2meauProps.height" :background_color="header2meauProps.backgroundColor">
+  <header2meau id="header2meau" ref="header2meau" :data="" :listmenuData="this.listmenuData" :listmenuStyle="this.listmenuStyle">
     <li slot="menu" slot-scope="props" class="menu" :key="props.item.id" @mouseover="displayChildMenu(props.index)">{{props.item.content}}</li>
     <li slot="childmenu" slot-scope="props" class="listmenu" :key="props.item.id"><img :src="props.item.image" width="40px" height="40px"/>{{props.item.title}}</li>
   </header2meau>
@@ -19,12 +19,21 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      header2meauProps: {
-        menudata:[],
+      listmenuStyle: {
         width:"47vw",
         height:"13.8vh",
-        backgroundColor:"yellow"
-      }
+        backgroundColor:"yellow",
+        flex_direction:"row",
+        justify_content:"space-around",
+        align_items: "center"
+      },
+      childmenuStyle: {
+        width:"100vw",
+        height: this.listmenuStyle.height,
+        left: (parseInt(this.width)-0.01)+"vw",
+        flexDirection: this.flexDirection
+      },
+      listmenuData:[],
     }
   },
   components: {
@@ -38,7 +47,7 @@ export default {
     getHeader2meauData () {
       axios.get('/api/static/api/menuheaderdatas.js')
         .then((response) => {
-          this.header2meauProps.menudata = response.data
+          this.listmenuData = response.data
           console.log(response.data)
         })
         .catch(function (error) {
@@ -55,10 +64,20 @@ export default {
 <style lang="scss" scoped>
 @import '~@/assets/css/mixin';
 .header2meauwrap{
-  @include flex(row,center);
+  @include flex(row,space-between);
   .brand{
     background:url("../assets/image/xmlogo.jpg") no-repeat ;
+    margin-left: 20px;
   }
+  #header2meau{
+    li.menu{
+      list-style:none;
+      cursor: pointer
+
+
+    }
+  }
+
 }
 
 // .header-one {

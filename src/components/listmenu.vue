@@ -16,44 +16,51 @@ export default {
   data () {
     return {
       listmenustyle: {
-        backgroundColor: this.background_color,
-        width: this.width,
-        height: this.height
+        backgroundColor: this.listmenuStyle.background_color,
+        width: this.listmenuStyle.width,
+        height: this.listmenuStyle.height,
+        flexDirection: this.listmenuStyle.flex_direction,
+        justifyContent:this.listmenuStyle.justify_content,
+        alignItems:this.listmenuStyle.align_items
       },
       childmenustyle: {
-
-        height: this.height,
-        left: (parseInt(this.width)-0.01)+"vw"
-
+        width:this.childmenuStyle.width,
+        height: this.childmenuStyle.height,
+        left: this.childmenuStyle.left,
+        flexDirection: this.childmenuStyle.flexDirection
       },
       show:false,
       inx:0
     }
   },
   props: {
-    width: {
-      type:String,
-      default () {
-        return "0px"
-      }
-    },
-    height:{
-      type:String,
-      default () {
-        return "auto"
-      }
-    },
-    background_color:{
-      type:String,
-      default () {
-        return ''
-      }
-    },
+    listmenuStyle:{
+      type: Object,
+      default: function () {
+        return {
+          width: "0px",
+          height: "auto",
+          background_color:'',
+          flex_direction: "column",
+          justify_content: "center",
+          align_items: "center"
+          }
+        }
+      },
+      childmenuStyle:{
+        type: Object,
+        default: function () {
+          return {
+            width: this.listmenuStyle.width,
+            height: this.listmenuStyle.height,
+            left: (parseInt(this.width)-0.01)+"vw",
+            flexDirection: this.listmenuStyle.flex_direction
+            }
+          }
+        },
     menu_datas: {
       type: Array,
-      default () {
-        return []
-      }
+      default: []
     }
   },
   methods: {
@@ -72,7 +79,6 @@ export default {
   position: relative;
     .listmenu{
       @include flex(column ,center,stretch);
-      width: 10vw;
       overflow: auto;
     }
     .childmenu{

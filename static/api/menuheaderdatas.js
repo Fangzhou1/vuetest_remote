@@ -4,11 +4,6 @@
     {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
     {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
     {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
-    {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
-    {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
-    {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
-    {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
-    {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},
     {"title":"111111111","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"}]},
   {"id":2,"content":"红米","childcontent":[
     {"title":"222222222","url":"www.baidu.com","image":"//i1.mifile.cn/f/i/g/2015/cn-index/m8-80.png?width=80&amp;height=80"},

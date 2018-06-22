@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <ul class="listmenu" :style="listmenustyle" @mouseout="show=false">
-      <slot name="menu" v-for="(item,index) in listmenuData" @mouseover="displayChildMenu(index)" :item="item" :index="index"></slot>
+      <slot name="menu" v-for="(item,index) in listmenuData" :item="item" :index="index"></slot>
     </ul>
     <transition name="childmenu">
       <ul v-show="show" class="childmenu" :style="childmenustyle" @mouseover="show=true" @mouseout="show=false">
@@ -73,7 +73,9 @@ export default {
     displayChildMenu(index){
       this.show = true;
       this.inx=index;
-
+    },
+    displayChildMenu2(){
+      this.show = true;
     }
   },
   mounted () {
@@ -92,6 +94,7 @@ export default {
     }
     .childmenu{
       @include flex(column ,flex-start);
+
       position: absolute;
       background-color: rgb(237, 249, 249);
       overflow: auto;
@@ -99,10 +102,11 @@ export default {
       top: 0;
       z-index: 1;
       &.childmenu-enter-active, &.childmenu-leave-active {
-        transition: width .5s;
+        transition: height .5s;
       }
       &.childmenu-enter, &.childmenu-leave-to {
-        width: 0px;
+        width: 0px!important;
+        height: 0px!important
       }
     }
 }

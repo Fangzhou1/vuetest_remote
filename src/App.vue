@@ -4,7 +4,7 @@
   <hder2></hder2>
   <!-- <slide :images="images"></slide> -->
   <listmenu ref="listmenu" :listmenuData="listmenuData" :listmenuStyle="listmenuStyle">
-      <li slot="menu" slot-scope="props" class="menu" :key="props.item.id" @mouseover="displayChildMenu(props.index)">{{props.item.content}}</li>
+      <li slot="menu" slot-scope="props" class="menu" :key="props.item.id" @mouseover="displayChildMenu(props.index)"><span v-text="props.item.content"></span></li>
       <li slot="childmenu" slot-scope="props" class="listmenu" :key="props.item.id"><img :src="props.item.image" width="40px" height="40px"/>{{props.item.title}}</li>
   </listmenu>
   <route-view></route-view>
@@ -82,7 +82,6 @@ export default {
     text-align:center;
   }
   li.listmenu{
-    @include flex(row,center);
     @include li(14vh,0,0px,10px);
     color:rgb(8, 8, 7)
   }
